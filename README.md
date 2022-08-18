@@ -3,6 +3,11 @@
 [example-projects](https://mui.com/zh/material-ui/getting-started/example-projects/)
 Create React App [（TypeScript 版本）](https://github.com/mui/material-ui/tree/next/examples/create-react-app-with-typescript)  
 
+[templates](https://mui.com/zh/material-ui/getting-started/templates/)  
+[sign-up](https://github.com/mui/material-ui/tree/v5.10.1/docs/data/material/getting-started/templates/sign-up)  
+
+[material-icons](https://mui.com/zh/material-ui/material-icons/) `@mui/icons-material`  
+
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
