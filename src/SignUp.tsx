@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,10 +12,20 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Paper } from '@mui/material';
+
+import PhoneInput from 'react-phone-input-2';
+// import 'react-phone-input-2/lib/material.css'
+import './style/material.css';
 
 function Copyright(props: any) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -29,6 +39,8 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignUp() {
+
+  const [number, setNumber] = useState('');
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -56,64 +68,119 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+              <Grid item xs={12}>
+                {/* <TextField
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="phone"
+                  label="phone"
+                  name="phone"
+                  autoComplete="phone"
+                  size="small"
+                /> */}
+                <PhoneInput
+                  onlyCountries={['tw', 'de', 'es']}
+                  localization={{
+                    Taiwan: '台灣',
+                    Germany: 'Deutschland',
+                    Spain: 'España',
+                  }}
+                  value={number}
+                  onChange={(phone) => setNumber(phone)}
+                />
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Paper
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '2px 4px',
+                    alignItems: 'center',
+                    height: 44,
+                    width: 395,
+                    border: '1px solid #cacaca',
+                    boxShadow: 'none',
+                    '&:hover': {
+                      borderColor: '#000',
+                    },
+                  }}
+                >
+                  <TextField
+                    margin="dense"
+                    // type="number"
+                    variant="standard"
+                    value={number}
+                    style={{
+                      marginLeft: 8,
+                    }}
+                    InputProps={{
+                      disableUnderline: true,
+                      //startAdornment: InputAdornmentImg(outToken.iconPath),
+                    }}
+                    placeholder="請輸入 6 位數驗證碼"
+                    onChange={(event) => {}}
+                  />
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    onClick={() => {
+                      alert();
+                      //getOtp
+                      //onPresentCurrencyModal()
+                    }}
+                  >
+                    發送驗證碼
+                  </Button>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <TextField
+                  autoComplete="given-opt"
+                  name="opt"
+                  required
+                  fullWidth
+                  id="opt"
+                  label="opt"
+                  placeholder="請輸入 6 位數驗證碼"
                   autoFocus
+                  size="small"
+                  style={{ height: '40px' }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
+              <Grid item xs={12} sm={4} textAlign="center">
+                <Button
+                  variant="outlined"
+                  size="large"
+                  style={{ marginTop: '-1px' }}
+                >
+                  發送驗證碼
+                </Button>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
+
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              登入 / 註冊
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
